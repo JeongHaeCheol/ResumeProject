@@ -1,0 +1,47 @@
+<div [@routerTransition]>
+    <div class="row">
+        <div class="col-md-9">
+            <h1 class="participant-title" id='participantName'>  학교</h1>
+        </div>
+      </div>
+   
+    
+          
+              <table style="margin-left: auto; margin-right: auto;" >
+                  <thead class="thead">
+                      <tr class="thead-cols">
+              
+                          <th class="info">학교Id</th>
+                      
+                          <th class="info">학교이름</th>
+                      
+                          <th class="info">주소</th>
+                      
+                          <th class="info">연락처</th>
+                      
+                          <th class="info">홈페이지</th>
+                      
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let participant of allParticipants">
+        
+        
+                      <td class="participant-properties">{{participant.schId}}</td>
+              
+                      <td class="participant-properties">{{participant.schName}}</td>
+                  
+                      <td class="participant-properties">{{participant.address}}</td>
+                  
+                      <td class="participant-properties">{{participant.contactAdress}}</td>
+                  
+                      <td class="participant-properties">{{participant.hompage}}</td>
+                  
+                </tr>
+              </tbody>
+            </table>
+
+   </div>
+
+

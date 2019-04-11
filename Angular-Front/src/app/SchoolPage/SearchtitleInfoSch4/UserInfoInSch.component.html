@@ -1,0 +1,105 @@
+<div [@routerTransition]>
+    <div class="row">
+        <div class="col-md-9">
+            <h1 class="participant-title" id='participantName'> 학력 검색</h1>
+        </div>
+        <div class="col-md-3">
+        <!-- <button class="btn btn-lg btn-success" (click)="open(content)"><span style="font-size: 14px;font-family: inherit;border-right:1px solid rgba(255,255,255,0.5);padding-right:0.6em;margin-right:0.5em;vertical-align:middle;">
+            <svg class="plus-svg" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
+              <path fill-rule="evenodd" d="M5.5,4.5 L9.5,4.5 L10,4.5 L10,5.5 L9.5,5.5 L5.5,5.5 L5.5,9.5 L5.5,10 L4.5,10 L4.5,9.5 L4.5,5.5 L0.5,5.5 L0,5.5 L0,4.5 L0.5,4.5 L4.5,4.5 L4.5,0.5 L4.5,0 L5.5,0 L5.5,0.5 L5.5,4.5 Z"/>
+            </svg>
+        </span>이력서 추가</button> -->
+        </div>
+      </div>
+        <div class="row">
+            <div style="margin-left: auto; margin-right: auto;">
+              <div class="form-inline">
+                <input placeholder="학교 이름" class="form-control input-lg input" #place (keyup.enter)="loadOption(place.value);place.value='';" />
+                <button class="btn btn-lg btn-info" (click)="loadOption(place.value); place.value=''; ">Search</button>
+              </div>
+            </div>
+          </div>
+
+              <table style="margin-left: auto; margin-right: auto;" >
+                  <thead class="thead">
+                  <tr class="thead-cols">
+       
+		    <th class="info">학생 ID</th> 
+                   
+                    <th class="info">학교 ID</th>
+        
+                    <th class="info">학교 이름</th>
+        
+                    <th class="info">입학일</th>
+        
+                    <th class="info">졸업일</th>
+        
+                    <th class="info">전공 (학과/인문계/실업계)</th>
+        
+                    <th class="info">학점</th>
+        
+                    <th class="info">공개여부</th>
+        
+                    <th class="info">인증여부</th>
+        
+                    <th class="info-actions">처리</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let asset of myUserInfoInSchList">
+        
+        	
+		
+               	    <td class="asset-properties">{{asset.ownerId}}</td>    
+        
+                    <td class="asset-properties">{{asset.authorizedParticipantId}}</td>
+        
+                    <td class="asset-properties">{{asset.schoolName}}</td>
+        
+                    <td class="asset-properties">{{transferToDate(asset.entranceDate)}}</td>
+        
+                    <td class="asset-properties">{{transferToDate(asset.graduationDate)}}</td>
+        
+                    
+        
+                    <td class="asset-properties">{{asset.majorField}}</td>
+        
+                    <td class="asset-properties">{{asset.gradeAverage}}</td>
+        
+                    <td class="asset-properties">{{asset.isPublic}}</td>
+        
+        
+                    <td class="asset-properties">
+                      <span *ngFor="let asset2 of myAuthenticationList">
+                        <b *ngIf="asset2.resumeAssetId == asset.assetId">
+                          {{authenticationExist(asset2.approvalStatus)}}
+                        </b>
+                      </span>
+                      {{printAuthentication()}}
+        
+                    </td>
+        
+        
+                    <td>
+                    <!--
+                    <button (click)="getForm(asset.assetId);" type="button" class="btn btn-update" data-toggle="modal" data-target="#updateAssetModal">
+                      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        width="12.8px" height="12.8px" viewBox="0 0 30.7 30.7" style="enable-background:new 0 0 30.7 30.7;" xml:space="preserve">
+                        <g>
+                          <path d="M1.5,30.7c0.1,0,0.2,0,0.4,0l5.9-1.5c0.8-0.2,1.3-1,1.1-1.8c-0.2-0.8-1-1.3-1.8-1.1l-3.6,0.9l0.8-3.8
+                         c0.2-0.8-0.4-1.6-1.2-1.8c-0.8-0.2-1.6,0.4-1.8,1.2L0,28.9c-0.1,0.5,0.1,1,0.4,1.4C0.7,30.6,1.1,30.7,1.5,30.7z"
+                          />
+                          <path d="M10.4,25.2c0.3,0.3,0.7,0.4,1.1,0.4c0.4,0,0.8-0.1,1.1-0.4L30.3,7.5c0.6-0.6,0.6-1.5,0-2.1l-4.9-4.9
+                         C25.1,0.2,24.7,0,24.3,0c-0.4,0-0.8,0.2-1.1,0.4L5.5,18.2c-0.3,0.3-0.4,0.7-0.4,1.1s0.2,0.8,0.4,1.1L10.4,25.2z M24.3,3.6l2.8,2.8
+                         L11.5,22l-2.8-2.8L24.3,3.6z" />
+                        </g>
+                      </svg>
+                    </button>
+                  -->
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+       
+          </div>

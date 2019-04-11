@@ -1,0 +1,80 @@
+
+namespace hansung.ac.kr.assets
+import hansung.ac.kr.participants.*
+
+asset Authentication identified by assetId {
+    o String assetId
+    o String ownerId
+    o String approvalStatus
+    o String resumeDetails
+    o String resumeAssetId
+    o String authorizedParticipantId
+    o DateTime authenticationTime
+}
+
+
+asset ResumeInfoUser identified by assetId {
+    o String assetId
+    o String ownerId
+    o String name
+    o DateTime dob
+    o String supportField
+    o String salaryRequirement regex=/[1-9][0-9]{2,}/ optional
+    o String majorActivities optional
+    o String socialExperience optional
+    o String skillsAndCapabilities optional
+    o Boolean isPublic
+}
+
+
+asset Certificate identified by assetId {
+    o String assetId 
+    o String ownerId
+    o String certificateName
+    o Integer certificateScore default=0 range=[0,] optional
+    o String authorizedParticipantId
+    o String organizationName
+    o DateTime dob
+    o DateTime expirationDate optional
+    o DateTime transactionTime optional
+    o Boolean isPublic
+}
+
+asset AwardDetails identified by assetId {
+   o String assetId
+   o String ownerId
+   o String contestName
+   o String organizationName
+   o String authorizedParticipantId
+   o DateTime dateOfAward
+   o DateTime transactionTime optional
+   o String awardGrade optional 
+   o String description optional
+   o Boolean isPublic
+}
+
+asset UserInfoInEnt identified by assetId {
+    o String assetId
+    o String ownerId
+    o String authorizedParticipantId
+    o String enterpriseName
+    o String userPosition optional
+    o String performingTask 
+    o DateTime dateOfEmployment optional
+    o DateTime retirementDate optional
+    o DateTime transactionTime optional
+    o Boolean isPublic
+}
+
+asset UserInfoInSch identified by assetId {
+    o String assetId
+    o String ownerId
+    o String authorizedParticipantId
+    o String schoolName
+    o DateTime entranceDate
+    o DateTime graduationDate optional
+    o DateTime transactionTime optional
+    o String majorField optional
+    o Double gradeAverage default=0.0 range=[0.0, 4.5] optional
+    o Boolean isPublic
+}

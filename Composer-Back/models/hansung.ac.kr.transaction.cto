@@ -1,0 +1,130 @@
+
+namespace hansung.ac.kr.transaction
+import hansung.ac.kr.assets.*
+import hansung.ac.kr.participants.*
+
+abstract transaction TxForOrg {
+    o String orgId optional
+}
+
+abstract transaction TxForEnt {
+    o String entId optional
+}
+
+abstract transaction TxForSch {
+    o String schId optional
+}
+
+abstract transaction TxForUser {
+    o String userId optional
+    o String authorizedParticipantType optional
+}
+
+
+
+
+transaction AddRequestUser {
+    o String requestUserId
+    o String requestDetails
+    o String targetParticipantId
+    o String targetParticipantType
+    o String requestResumeAssetId
+}
+
+transaction RevokeRequestUser {
+    o String targetParticipantType
+    o String targetParticipantId
+    o String requestResumeAssetId
+}
+
+
+transaction CreateAuthentication extends TxForUser {
+    o String authorizedParticipantId
+    o String resumeDetails
+    o String resumeAssetId optional
+}
+
+transaction CreateResumeInfoUser {
+    o DateTime dob
+    o String name
+    o String supportField
+    o String salaryRequirement optional
+    o String majorActivities optional
+    o String socialExperience optional
+    o String skillsAndCapabilities optional
+    o Boolean isPublic
+}
+
+transaction CreateCertificate extends TxForUser {
+    o String certificateName
+    o Integer certificateScore default=0 range=[0,] optional
+    o String authorizedParticipantId
+    o String organizationName
+    o DateTime dob
+    o DateTime expirationDate optional
+    o Boolean isPublic
+}
+
+
+
+transaction CreateAwardDetails extends TxForUser {
+   o String contestName
+   o String authorizedParticipantId
+   o String organizationName
+   o DateTime dateOfAward
+   o String awardGrade optional 
+   o String description optional
+   o Boolean isPublic
+}
+
+  
+
+  
+  
+transaction CreateUserInfoInEnt extends TxForUser {
+    o String authorizedParticipantId
+    o String enterpriseName
+    o String userPosition optional
+    o String performingTask
+    o DateTime dateOfEmployment optional
+    o DateTime retirementDate optional
+    o Boolean isPublic
+}
+  
+
+transaction CreateUserInfoInSch extends TxForUser {
+    o String authorizedParticipantId
+    o String schoolName
+  	o DateTime entranceDate
+    o DateTime graduationDate optional
+    o String majorField optional
+    o Double gradeAverage default=0.0 range=[0.0, 4.5] optional
+    o Boolean isPublic
+}
+  
+
+
+event SendEvent {
+    o Certificate certificate optional
+    o AwardDetails awardDetails optional
+    o UserInfoInEnt userInfoInEnt optional
+    o UserInfoInSch userInfoInSch optional
+    o TxForUser txForUser
+    o String resumeAssetId
+}
+
+event UserEvent {
+    o TxForUser txForUser
+}
+
+event OrganizationEvent {
+    o TxForOrg txForOrg
+}
+
+event EnterpriseEvent {
+    o TxForEnt txForEnt
+}
+
+event SchoolEvent {
+    o TxForSch txForSch
+}

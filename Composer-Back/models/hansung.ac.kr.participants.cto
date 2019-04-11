@@ -1,0 +1,70 @@
+
+namespace hansung.ac.kr.participants
+import hansung.ac.kr.assets.*
+
+participant User identified by userId {
+    o String userId regex=/^[^#]*$/
+    o String userName
+    o DateTime dob
+    o String address
+    o String phoneNumber
+    o String email
+    o Boolean isPublic
+    o Boolean isHuntingForJob
+
+}
+
+participant Organization identified by orgId {
+    o String orgId regex=/^[^#]*$/
+    o String orgName
+    o String address
+    o String contactAdress
+    o String homepage optional
+    o String discription optional
+    o RequestResume[] requestResumeList optional
+}
+
+participant Enterprise identified by entId {
+    o String entId regex=/^[^#]*$/
+    o String entName
+    o String address
+    o String contactAdress
+    o String homepage optional
+    o String numberOfemployees optional
+    o String sales optional
+    o String industryCategory optional
+    o String discription optional
+    o RequestResume[] requestResumeList optional
+
+}
+
+participant School identified by schId {
+ 	o String schId regex= /^[^#]*$/
+    o String schName
+    o String address optional
+    o String contactAdress optional
+    o String homepage optional
+    o RequestResume[] requestResumeList optional
+
+}
+
+concept RequestResume {
+    o String userId
+    o String requestDetails
+    o String participantType
+    o String requestResumeAssetId 
+}
+
+
+enum IndustryCategory {
+  o  Synthesis
+  o  ProduceAndChemistry
+  o  ServiceBusiness
+  o  BankFinancial
+  o  IT
+  o  Media
+  o  MedicalAndPharmaceuticals
+  o  Construction
+  o  SaleAndDistribution
+  o  Education
+}

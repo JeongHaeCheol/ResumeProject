@@ -1,0 +1,503 @@
+<div [@routerTransition]>
+
+
+
+  <div class="row">
+    <div class="col-md-9">
+      <h1 class="participant-title" id='participantName'> 유저 검색</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div style="margin-left: auto; margin-right: auto;">
+      <div class="form-inline">
+        <input placeholder="유저 이름" class="form-control input-lg input" #place (keyup.enter)="loadOption(place.value);place.value='';" />
+        <button class="btn btn-lg btn-info" (click)="loadOption(place.value); place.value='';">Search</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!--                                              @@@@@@@@@@@@@                                                       -->
+
+
+
+  <div class="modal fade" id="getUserDetails" tabindex="-1" role="dialog" aria-labelledby="getUserDetails">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content container3">
+
+        <div id="cv" class="instaFade container3">
+          <div class="mainDetails">
+            <div class="setRight">
+              <button type="button" class="btn btn-default setRight" data-dismiss="modal">닫기</button>
+            </div>
+
+            <div id="name">
+              <h1 class="quickFade delayTwo">정보 보기</h1>
+              <h2 class="quickFade delayThree"></h2>
+            </div>
+
+            <div id="contactDetails" class="quickFade delayFour">
+              <ul>
+
+              </ul>
+            </div>
+            <div class="clear"></div>
+          </div>
+
+          <div id="mainArea" class="quickFade delayFive">
+            <section>
+              <article>
+                <div class="sectionTitle">
+                  <h1>개인정보</h1>
+                </div>
+
+                <div class="sectionContent">
+                  <table class="table table-responsive ">
+                    <thead class="thead">
+                      <tr class="thead-cols">
+
+                        <th class="info">Id</th>
+
+                        <th class="info">이름</th>
+
+                        <th class="info">생년월일</th>
+
+                        <th class="info">주소</th>
+
+                        <th class="info">전화번호</th>
+
+                        <th class="info">email</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <tr *ngIf="targetUser != undefined || targetUser != null">
+                        <td class="participant-properties">{{targetUser.userId}}</td>
+
+                        <td class="participant-properties">{{targetUser.userName}}</td>
+
+                        <td class="participant-properties">{{transferToDate(targetUser.dob)}}</td>
+
+                        <td class="participant-properties">{{targetUser.address}}</td>
+
+                        <td class="participant-properties">{{targetUser.phoneNumber}}</td>
+
+                        <td class="participant-properties">{{targetUser.email}}</td>
+
+
+
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+                  <table class="table table-responsive ">
+                    <thead class="thead">
+                      <tr class="thead-cols">
+
+                        <th class="info">전공분야</th>
+
+                        <th class="info">희망연봉</th>
+
+                        <th class="info">주요활동</th>
+
+                        <th class="info">사회경험</th>
+
+                        <th class="info">보유기술 및 기타능력</th>
+
+
+
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr *ngFor="let asset of targetResumeInfoUser">
+
+                        <td class="asset-properties">{{asset.supportField}}</td>
+
+                        <td class="asset-properties">{{asset.salaryRequirement}}</td>
+
+                        <td class="asset-properties">{{asset.majorActivities}}</td>
+
+                        <td class="asset-properties">{{asset.socialExperience}}</td>
+
+                        <td class="asset-properties">{{asset.skillsAndCapabilities}}</td>
+
+
+
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+              </article>
+              <div class="clear"></div>
+            </section>
+
+
+            <section>
+              <div class="sectionTitle">
+                <h1>경력</h1>
+              </div>
+
+              <div class="sectionContent">
+                <article>
+
+
+                  <table class="table table-responsive ">
+                    <thead class="thead">
+                      <tr class="thead-cols">
+
+
+                        <th class="info">기업 ID</th>
+
+                        <th class="info">기업 이름</th>
+
+                        <th class="info">직책</th>
+
+                        <th class="info">수행업무</th>
+
+                        <th class="info">입사날짜</th>
+
+                        <th class="info">퇴사날짜</th>
+
+
+                        <th class="info">인증여부</th>
+
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let asset of targetUserInfoInEnt">
+
+
+
+                        <td class="asset-properties">{{asset.authorizedParticipantId}}</td>
+
+                        <td class="asset-properties">{{asset.enterpriseName}}</td>
+
+                        <td class="asset-properties">{{asset.userPosition}}</td>
+
+                        <td class="asset-properties">{{asset.performingTask}}</td>
+
+                        <td class="asset-properties">{{transferToDate(asset.dateOfEmployment)}}</td>
+
+                        <td class="asset-properties">{{transferToDate(asset.retirementDate)}}</td>
+
+
+                        <td class="asset-properties">
+                          <span *ngFor="let asset2 of myAuthenticationList">
+                            <b *ngIf="asset2.resumeAssetId == asset.assetId">
+                              {{authenticationExist(asset2.approvalStatus)}}
+                            </b>
+                          </span>
+                          {{printAuthentication()}}
+
+                        </td>
+
+
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+
+                </article>
+
+
+              </div>
+              <div class="clear"></div>
+            </section>
+
+
+            <section>
+              <div class="sectionTitle">
+                <h1>자격증</h1>
+              </div>
+
+              <div class="sectionContent">
+                <table class="table table-responsive ">
+                  <thead class="thead">
+                    <tr class="thead-cols">
+
+                      <th class="info">자격증 이름</th>
+
+                      <th class="info">점수</th>
+
+                      <th class="info">인증기관 ID</th>
+
+                      <th class="info">인증기관 이름</th>
+
+                      <th class="info">발행일</th>
+
+                      <th class="info">만료일</th>
+
+
+                      <th class="info">인증여부</th>
+
+
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let asset of targetCertificate">
+
+
+
+
+                      <td class="asset-properties">{{asset.certificateName}}</td>
+
+                      <td class="asset-properties">{{asset.certificateScore}}</td>
+
+                      <td class="asset-properties">{{asset.authorizedParticipantId}}</td>
+
+                      <td class="asset-properties">{{asset.organizationName}}</td>
+
+                      <td class="asset-properties">{{transferToDate(asset.dob)}}</td>
+
+                      <td class="asset-properties">{{transferToDate(asset.expirationDate)}}</td>
+
+
+                      <td class="asset-properties">
+                        <span *ngFor="let asset2 of myAuthenticationList">
+                          <b *ngIf="asset2.resumeAssetId == asset.assetId">
+                            {{authenticationExist(asset2.approvalStatus)}}
+                          </b>
+                        </span>
+                        {{printAuthentication()}}
+
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+              <div class="clear"></div>
+            </section>
+
+
+
+
+            <section>
+              <div class="sectionTitle">
+                <h1>수상내역</h1>
+              </div>
+
+              <div class="sectionContent">
+
+
+                <table class="table table-responsive ">
+                  <thead class="thead">
+                    <tr class="thead-cols">
+
+
+                      <th class="info">대회명</th>
+
+                      <th class="info">주체기관 ID</th>
+
+                      <th class="info">주체기관 이름</th>
+
+                      <th class="info">수상날짜</th>
+
+                      <th class="info">수상내역</th>
+
+                      <th class="info">설명</th>
+
+
+                      <th class="info">인증여부</th>
+
+
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let asset of targetAwardDetails">
+
+                      <td class="asset-properties">{{asset.contestName}}</td>
+
+                      <td class="asset-properties">{{asset.authorizedParticipantId}}</td>
+
+                      <td class="asset-properties">{{asset.organizationName}}</td>
+
+                      <td class="asset-properties">{{transferToDate(asset.dateOfAward)}}</td>
+
+                      <td class="asset-properties">{{asset.awardGrade}}</td>
+
+                      <td class="asset-properties">{{asset.description}}</td>
+
+
+                      <td class="asset-properties">
+                        <span *ngFor="let asset2 of myAuthenticationList">
+                          <b *ngIf="asset2.resumeAssetId == asset.assetId">
+                            {{authenticationExist(asset2.approvalStatus)}}
+                          </b>
+                        </span>
+                        {{printAuthentication()}}
+
+                      </td>
+
+
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+              <div class="clear"></div>
+            </section>
+
+
+
+
+            <section>
+              <div class="sectionTitle">
+                <h1>학력</h1>
+              </div>
+
+              <div class="sectionContent">
+
+                <article>
+
+                  <table class="table table-responsive type11">
+                    <thead class="thead">
+                      <tr class="thead-cols">
+
+
+                        <th class="info">학교 ID</th>
+
+                        <th class="info">학교 이름</th>
+
+                        <th class="info">입학일</th>
+
+                        <th class="info">졸업일</th>
+
+                        <th class="info">전공 (학과/인문계/실업계)</th>
+
+                        <th class="info">학점</th>
+
+                        <th class="info">인증여부</th>
+
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let asset of targetUserInfoInSch">
+
+
+
+
+                        <td class="asset-properties">{{asset.authorizedParticipantId}}</td>
+
+                        <td class="asset-properties">{{asset.schoolName}}</td>
+
+                        <td class="asset-properties">{{transferToDate(asset.entranceDate)}}</td>
+
+                        <td class="asset-properties">{{transferToDate(asset.graduationDate)}}</td>
+
+
+
+                        <td class="asset-properties">{{asset.majorField}}</td>
+
+                        <td class="asset-properties">{{asset.gradeAverage}}</td>
+
+                        <td class="asset-properties">
+                          <span *ngFor="let asset2 of myAuthenticationList">
+                            <b *ngIf="asset2.resumeAssetId == asset.assetId">
+                              {{authenticationExist(asset2.approvalStatus)}}
+                            </b>
+                          </span>
+                          {{printAuthentication()}}
+
+                        </td>
+
+
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </article>
+              </div>
+              <div class="clear"></div>
+            </section>
+
+
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <table style="margin-left: auto; margin-right: auto;">
+    <thead class="thead">
+      <tr class="thead-cols">
+
+        <th class="custom-table-th">유저Id</th>
+
+        <th class="custom-table-th">유저이름</th>
+
+        <th class="custom-table-th">생년월일</th>
+
+        <th class="custom-table-th">주소</th>
+
+        <th class="custom-table-th">전화번호</th>
+
+        <th class="custom-table-th">email</th>
+
+
+        <th class="custom-table-th">구직상태</th>
+
+        <th class="custom-table-th">자세히보기</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let participant of allParticipants">
+
+
+        <td class="custom-table-td">{{participant.userId}}</td>
+
+        <td class="custom-table-td">{{participant.userName}}</td>
+
+        <td class="custom-table-td">{{transferToDate(participant.dob)}}</td>
+
+        <td class="custom-table-td">{{participant.address}}</td>
+
+        <td class="custom-table-td">{{participant.phoneNumber}}</td>
+
+        <td class="custom-table-td">{{participant.email}}</td>
+
+        <td class="custom-table-td">{{participant.isHuntingForJob}}</td>
+
+        <td class="custom-table-td">
+          <button id="showModal" (click)="getUserDetails(participant.userId)" type="button" class="btn btn-primary setLeft" data-toggle="modal"
+            data-target="#getUserDetails">
+            <span style=" font-size: 14px;font-family: inherit;border-right:1px solid rgba(255,255,255,0.5);padding-right:0.6em;margin-right:0.5em;vertical-align:middle;">
+              <svg class="plus-svg" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
+                <path fill-rule="evenodd" d="M5.5,4.5 L9.5,4.5 L10,4.5 L10,5.5 L9.5,5.5 L5.5,5.5 L5.5,9.5 L5.5,10 L4.5,10 L4.5,9.5 L4.5,5.5 L0.5,5.5 L0,5.5 L0,4.5 L0.5,4.5 L4.5,4.5 L4.5,0.5 L4.5,0 L5.5,0 L5.5,0.5 L5.5,4.5 Z"
+                />
+              </svg>
+            </span>
+            자세히보기
+          </button>
+        </td>
+      </tr>
+    </tbody>
+
+
+  </table>

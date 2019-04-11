@@ -1,0 +1,83 @@
+<div [@routerTransition]>
+    <div class="row">
+        <div class="col-md-9">
+            <h1 class="participant-title" id='participantName'> 기관 리스트</h1>
+        </div>
+      </div>
+   
+  <div class="row">
+    
+
+        <div class="card-body">
+          
+          
+        </div>
+        </div>
+       
+        <table style="margin-left: auto; margin-right: auto;" >
+            <thead class="thead">
+                  <tr class="thead-cols">
+
+
+                      <th class="info">기관ID</th>
+                  
+                      <th class="info">기관명</th>
+                  
+                      <th class="info">주소</th>
+                  
+                      <th class="info">연락처</th>
+                  
+                      <th class="info">홈페이지 주소</th>
+                  
+                      <th class="info">부가설명</th>
+                  
+                  
+    
+              </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let participant of allParticipants">
+  
+          
+                      <td class="participant-properties">{{participant.orgId}}</td>
+                  
+                      <td class="participant-properties">{{participant.orgName}}</td>
+                  
+                      <td class="participant-properties">{{participant.address}}</td>
+                  
+                      <td class="participant-properties">{{participant.contactAdress}}</td>
+                  
+                      <td class="participant-properties">{{participant.homepage}}</td>
+                  
+                      <td class="participant-properties">{{participant.discription}}</td>
+                  
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        
+
+<ng-template #del let-c="close" let-d="dismiss">
+  <div id="deleteAssetModal" tabindex="-1" role="dialog" aria-labelledby="deleteAssetModalLabel">
+
+    <div class="modal-header">
+      <h4 class="modal-title" id="deleteAssetModalLabel">Delete Asset</h4>
+
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="d('Cross click')">
+
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form [formGroup]="myForm" (ngSubmit)="deleteAsset()">
+      <div class="modal-body">
+        삭제 하시겠습니까?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="d('Cross click')">아니오</button>
+        <button (click)="c('Close click')" (click)="deleteAsset()" type="submit" class="btn btn-danger" data-dismiss="modal">예</button>
+      </div>
+    </form>
+
+  </div>
+</ng-template>
+

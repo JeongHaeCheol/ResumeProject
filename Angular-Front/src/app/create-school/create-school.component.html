@@ -1,0 +1,37 @@
+<div class="login-page" [@routerTransition]>
+  <div class="row justify-content-md-center">
+    <div class="col-md-4">
+      <img src="assets/images/resume.jpeg" width="150px" class="user-avatar" />
+      <h1>R`ESUME</h1>
+      <h3>학 교</h3>
+      <p>아래의 사항에 기입하시오.</p>
+      <p>ID는 영어로 입력하세요.</p>
+      <form [formGroup]="myForm">
+        <div class="modal-body">
+
+          <div class="form-group">
+            <input type="text" class="form-control input-underline input-lg" formControlName="schId" placeholder="학교 Id">
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control input-underline input-lg" formControlName="schName" placeholder="학교 명">
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control input-underline input-lg" formControlName="address" placeholder="주소">
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control input-underline input-lg" formControlName="contactAdress" placeholder="연락처">
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control input-underline input-lg" formControlName="homepage" placeholder="홈페이지">
+          </div>
+
+        </div>
+        <button (click)="addParticipant(myForm);" type="submit" class="btn btn-success">완료</button>
+      </form>
+    </div>
+  </div>
+</div>

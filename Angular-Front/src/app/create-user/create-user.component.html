@@ -1,0 +1,109 @@
+<div class="login-page" [@routerTransition]>
+    <div class="row justify-content-md-center">
+      <div class="col-md-4">
+        <img src="assets/images/resume.jpeg" width="150px" class="user-avatar" />
+        <h1>R`ESUME</h1>
+        <h3>User</h3>
+        <p>아래의 사항에 기입하시오.</p>
+	<p>ID는 영어로 입력하세요.</p>
+        <form [formGroup]="myForm">
+          <div class="modal-body">
+  
+            <div class="form-group">
+              <input type="text" class="form-control input-underline input-lg" formControlName="userId" placeholder="유저 Id">
+            </div>
+  
+            <div class="form-group">
+              <input type="text" class="form-control input-underline input-lg" formControlName="userName" placeholder="이름">
+            </div>
+  
+            <div class="form-group">
+              <input type="text" class="form-control input-underline input-lg" formControlName="dob" placeholder="생년월일(ex 2000-01-01)">
+            </div>
+  
+            <div class="form-group">
+              <input type="text" class="form-control input-underline input-lg" formControlName="address" placeholder="주소">
+            </div>
+  
+            <div class="form-group">
+              <input type="text" class="form-control input-underline input-lg" formControlName="phoneNumber" placeholder="연락처">
+            </div>
+  
+            <div class="form-group">
+              <input type="text" class="form-control input-underline input-lg" formControlName="email" placeholder="E-mail">
+            </div>
+  
+            <div class="form-group text-center">
+                <label for="isPublic">공개여부</label>
+                <input formControlName="isPublic" type="checkbox" class="form-control input-underline input-lg">
+              </div>
+    
+              <div class="form-group text-center">
+                <label for="isHuntingForJob">구직상태</label>
+                <input formControlName="isHuntingForJob" type="checkbox" class="form-control input-underline input-lg">
+              </div>
+  
+          </div>
+          <button (click)="addParticipant(myForm);" type="submit" class="btn btn-success">완료</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <!-- <div class="login-page" [@routerTransition]>
+      <div class="row justify-content-md-center">
+        <div class="col-md-4">
+          <img src="assets/images/resume.jpeg" width="150px" class="user-avatar" />
+          <h1>R`ESUME</h1>
+          <p>Enter the required values below.</p>
+          <form [formGroup]="myForm">
+            <div class="modal-body">
+    
+              <div class="form-group text-left">
+                <label for="userId">userId</label>
+                <input formControlName="userId" type="text" class="form-control">
+              </div>
+    
+              <div class="form-group text-left">
+                <label for="userName">userName</label>
+                <input formControlName="userName" type="text" class="form-control">
+              </div>
+    
+              <div class="form-group text-left">
+                <label for="dob">dob</label>
+                <input formControlName="dob" type="text" class="form-control">
+              </div>
+    
+              <div class="form-group text-left">
+                <label for="address">address</label>
+                <textarea formControlName="address" class="form-control" rows="3"></textarea>
+              </div>
+    
+              <div class="form-group text-left">
+                <label for="phoneNumber">phoneNumber</label>
+                <input formControlName="phoneNumber" type="text" class="form-control">
+              </div>
+    
+              <div class="form-group text-left">
+                <label for="email">email</label>
+                <input formControlName="email" type="text" class="form-control">
+              </div>
+    
+              <div class="form-group text-left">
+                <label for="isPublic">isPublic</label>
+                <input formControlName="isPublic" type="checkbox" class="form-control">
+              </div>
+    
+              <div class="form-group text-left">
+                <label for="isHuntingForJob">isHuntingForJob</label>
+                <input formControlName="isHuntingForJob" type="checkbox" class="form-control">
+              </div>
+    
+            </div>
+            <button (click)="addParticipant(myForm);" type="submit" class="btn btn-success">Confirm</button>
+          </form>
+        </div>
+      </div>
+    </div> -->

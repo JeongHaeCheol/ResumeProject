@@ -1,0 +1,128 @@
+query searchUserById {
+  description: "Select user by Id"
+  statement:
+      SELECT hansung.ac.kr.participants.User
+      WHERE (userId == _$targetId)
+}
+
+query searchAlltUser {
+  description: "Select all users"
+  statement:
+      SELECT hansung.ac.kr.participants.User
+}
+
+query searchAllOrganization {
+  description: "Select all organizations"
+  statement:
+      SELECT hansung.ac.kr.participants.Organization
+}
+
+query searchAllEnterprise {
+  description: "Select all enterprise"
+  statement:
+      SELECT hansung.ac.kr.participants.Enterprise
+}
+
+query searchAllSchool {
+  description: "Select all school"
+  statement:
+      SELECT hansung.ac.kr.participants.School
+}
+
+query searchCertificateById {
+  description: " certificate"
+  statement:
+      SELECT hansung.ac.kr.assets.Certificate
+      WHERE (ownerId == _$targetUserId)
+}
+
+query searchAwardDetailsById {
+  description: " AwardDetails"
+  statement:
+      SELECT hansung.ac.kr.assets.AwardDetails
+      WHERE (ownerId == _$targetUserId)
+}
+
+query searchUserInfoInEntById {
+  description: " UserInfoInEnt"
+  statement:
+      SELECT hansung.ac.kr.assets.UserInfoInEnt
+      WHERE (ownerId == _$targetUserId)
+}
+
+
+query searchUserInfoInSchById {
+  description: " UserInfoInSch"
+  statement:
+      SELECT hansung.ac.kr.assets.UserInfoInSch
+      WHERE (ownerId == _$targetUserId)
+}
+
+query searchResumeInfoUserById {
+  description: " ResumeInfoUser"
+  statement:
+      SELECT hansung.ac.kr.assets.ResumeInfoUser
+      WHERE (ownerId == _$targetUserId)
+}
+
+
+
+query searchResumeInfoUserByAssetId{
+  description: "ResumeInfoUser"
+  statement:
+      SELECT hansung.ac.kr.assets.ResumeInfoUser
+      WHERE (assetId == _$tagetAssetId)
+}
+
+
+query searchCertificateByName {
+  description: " certificate"
+  statement:
+      SELECT hansung.ac.kr.assets.Certificate
+      WHERE (certificateName == _$targetName)
+}
+
+query searchAwardDetailsByName {
+  description: " AwardDetails"
+  statement:
+      SELECT hansung.ac.kr.assets.AwardDetails
+      WHERE (contestName == _$targetName)
+}
+
+query searchUserInfoInEntByName {
+  description: " UserInfoInEnt"
+  statement:
+      SELECT hansung.ac.kr.assets.UserInfoInEnt
+      WHERE (enterpriseName == _$targetName)
+}
+
+
+query searchUserInfoInSchByName {
+  description: " UserInfoInSch"
+  statement:
+      SELECT hansung.ac.kr.assets.UserInfoInSch
+      WHERE (schoolName == _$targetName)
+}
+
+
+
+query searchAuthenticationById {
+  description: "Authentication find by ownerId"
+  statement:
+      SELECT hansung.ac.kr.assets.Authentication
+      WHERE (ownerId == _$targetUserId)
+}
+
+query searchUserInfoInEntByPerformingTask {
+  description:"select user by performingTask"
+  statement:
+      SELECT hansung.ac.kr.assets.UserInfoInEnt
+      WHERE (performingTask == _$targetTask)
+}
+
+query searchCertificateByScore {
+  description: "select certificate over score"
+  statement:
+      SELECT hansung.ac.kr.assets.Certificate
+      WHERE (certificateScore >= _$targetScore)
+}

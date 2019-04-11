@@ -1,0 +1,57 @@
+<div [@routerTransition]>
+
+  <div class="row">
+    <div class="col-md-9">
+      <h1 class="participant-title" id='participantName'>유저 리스트</h1>
+    </div>
+  </div>
+   
+
+   
+              <table style="margin-left: auto; margin-right: auto;" >
+                  <thead class="thead">
+                <tr class="thead-cols">
+
+                  <th class="info">유저ID</th>
+
+                  <th class="info">유저명</th>
+
+                  <th class="info">생년월일</th>
+
+                  <th class="info">주소</th>
+
+                  <th class="info">연락처</th>
+
+                  <th class="info">메일주소</th>
+
+                  <th class="info">공개여부</th>
+
+                  <th class="info">구직상태</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let participant of allParticipants">
+
+
+                  <td class="participant-properties">{{participant.userId}}</td>
+
+                  <td class="participant-properties">{{participant.userName}}</td>
+
+                  <td class="participant-properties">{{transferToDate(participant.dob)}}</td>
+
+                  <td class="participant-properties">{{participant.address}}</td>
+
+                  <td class="participant-properties">{{participant.phoneNumber}}</td>
+
+                  <td class="participant-properties">{{participant.email}}</td>
+
+                  <td class="participant-properties">{{participant.isPublic}}</td>
+
+                  <td class="participant-properties">{{participant.isHuntingForJob}}</td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+   
